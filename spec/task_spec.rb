@@ -39,13 +39,13 @@ describe 'List' do
     test_list.tasks[0].describe.should eq 'scrub the driveway'
   end
 
-  it 'removes a task from the list' do
+  it 'removes a completed task from the list' do
     test_list = List.new('house maintenance')
     driveway = Task.new('scrub the driveway')
     pool = Task.new('clean the pool')
     test_list.add_task(driveway)
     test_list.add_task(pool)
-    test_list.remove_task(driveway)
+    test_list.complete_task(driveway)
     test_list.tasks.length.should eq 1
   end
 
@@ -85,7 +85,7 @@ describe 'List' do
     test_list.by_description.should eq [pool, driveway, house]
   end
 
-  it 'gives access to deleted tasks' do
+  it 'gives access to completed tasks' do
     test_list = List.new('house maintenance')
     driveway = Task.new('scrub the driveway')
     pool = Task.new('clean the pool')
@@ -93,7 +93,17 @@ describe 'List' do
     test_list.add_task(driveway)
     test_list.add_task(pool)
     test_list.add_task(house)
-    test_list.remove_task(pool)
-    test_list.deleted_tasks.should eq [pool]
+    test_list.complete_task(pool)
+    test_list.completed_tasks.should eq [pool]
+  end
+
+  it 'deletes an active task' do
+    test_list = List.new('house maintenance')
+    driveway = Task.new('scrub the driveway')
+    pool = Task.new('clean the pool')
+    test_list.add_task(driveway)
+    test_list.add_task(pool)
+    test_list.delete_task(driveway)
+    test_list.tasks.length.should eq 1
   end
 end

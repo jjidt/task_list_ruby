@@ -11,13 +11,17 @@ class List
     @tasks
   end
 
-  def remove_task(task)
-    @deleted_tasks = Array.new(0)
-    @deleted_tasks << @tasks.delete(task)
+  def complete_task(task)
+    @completed_tasks = Array.new(0)
+    @completed_tasks << @tasks.delete(task)
   end
 
-  def deleted_tasks
-    @deleted_tasks
+  def delete_task(task)
+    @tasks.delete(task)
+  end
+
+  def completed_tasks
+    @completed_tasks
   end
 
   def by_date
