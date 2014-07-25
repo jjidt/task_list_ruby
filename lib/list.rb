@@ -1,8 +1,11 @@
 class List
   def initialize(description)
     @tasks = []
+    @description = description
   end
-
+  def describe
+    @description
+  end
   def add_task(task)
     @tasks << task
   end

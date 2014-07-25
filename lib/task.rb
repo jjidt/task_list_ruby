@@ -5,6 +5,9 @@ class Task
   def describe
     @description
   end
+  def edit_description(new_description)
+    @description = new_description
+  end
   def set_due(month, day, year)
     @new_date = Time.new(year, month, day)
   end

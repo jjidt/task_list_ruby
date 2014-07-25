@@ -24,6 +24,12 @@ describe 'Task' do
     test_task.set_level(4)
     test_task.priority.should eq 4
   end
+
+  it 'lets you change the task description' do
+    test_task = Task.new('scrub the driveway')
+    test_task.edit_description('fluff the driveway curtains')
+    test_task.describe.should eq 'fluff the driveway curtains'
+  end
 end
 
 describe 'List' do
